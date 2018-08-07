@@ -1,0 +1,37 @@
+<h1> 관리자 </h1>
+
+
+        <ul>
+            {{latest_question_list0.question_text}}
+
+                {% for choice in latest_choice_list %}
+                    <li>
+
+                        <form action="{% url 'polls:okay' choice.id %}" method="post">
+                            {% csrf_token %}
+                            {{choice.name}}
+                            <input type="submit" name= "btn1" value="승인">
+                            <input type="submit" name = "btn2"  value="거절">
+
+
+                        </form>
+
+                    </li>
+                {% endfor %}
+            <br>{{latest_question_list1.question_text}}
+
+                {% for member in latest_member_list %}
+                    <li>
+
+                       <form action="{% url 'polls:detail' member.id %}"  method="post">
+                           {% csrf_token %}
+                            {{member.name}}
+                            <input type="submit" value="정보 수정">
+                       </form>
+
+                    </li>
+                {% endfor %}
+
+
+        </ul>
+
